@@ -6,11 +6,11 @@ require_once 'class_callendar/class_callendar.php';
 
 date_default_timezone_set('Europe/Vilnius');
 
-$year = isset($_GET['year']) ? $_GET['year'] : date("Y");
-$month = isset($_GET['month']) ? $_GET['month'] : date("m");
-$day = isset($_GET['day']) ? $_GET['day'] : date("d");
-$calendar = new Calendar("$year-$month-$day");
-//$calendar = new Calendar("$year-$month-$day", $dayOccupancy);
+//$year = isset($_GET['year']) ? $_GET['year'] : date("Y");
+//$month = isset($_GET['month']) ? $_GET['month'] : date("m");
+//$day = isset($_GET['day']) ? $_GET['day'] : date("d");
+//$calendar = new Calendar("$year-$month-$day");
+$calendar = new Calendar();
 
 if (isset($_SESSION['holidays'])) {
     $holidays = $_SESSION['holidays'];
