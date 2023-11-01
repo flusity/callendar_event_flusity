@@ -14,17 +14,17 @@ secureSession($db, $prefix);
 $language_code = getLanguageSetting($db, $prefix);
 $translations = getTranslations($db, $prefix, $language_code);
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_reservation_id'])) 
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_member_id'])) 
 {  $id = intval($_GET['id']); 
-    $delete_reservation_id = intval($_GET['delete_reservation_id']);
+    $delete_member_id = intval($_GET['delete_member_id']);
 
     try {
-        $sql = "DELETE FROM " . $prefix['table_prefix'] . "_event_reservation_time WHERE id = :delete_reservation_id";
+        $sql = "DELETE FROM " . $prefix['table_prefix'] . "_callendar_users_member WHERE id = :delete_member_id";
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(':delete_reservation_id', $delete_reservation_id, PDO::PARAM_INT);
+        $stmt->bindParam(':delete_member_id', $delete_member_id, PDO::PARAM_INT);
 
         $stmt->execute();
-        $_SESSION['success_message'] = t("Deleting the reservation was successful.");
+        $_SESSION['success_message'] = t("Deleting the member user was successful.");
     } catch (Exception $e) {
         $_SESSION['error_message'] = $e->getMessage();
     }
