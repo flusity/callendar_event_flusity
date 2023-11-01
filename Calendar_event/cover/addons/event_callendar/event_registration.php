@@ -9,12 +9,7 @@
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Lentelė</title>
-</head>
-<body>
+
 <table class="table table-sm">
         <thead>
             <tr>
