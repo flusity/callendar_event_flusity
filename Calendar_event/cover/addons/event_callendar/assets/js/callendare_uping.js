@@ -196,32 +196,11 @@ function showEventModal(eventData,topic) {
     };
 }
 
-function attachEventListeners() {
-    $('.event-view').off('click').click(function(e) {
-        e.stopImmediatePropagation();
-        const eventData = {
-            id: $(this).data('theme-id'),
-            title: $(this).data('title'),
-            date: $(this).data('date'),
-            color: $(this).data('color')
-        };
-        const matchingTopic = eventTopics.find(topic => topic.theme_id === eventData.id);// Randa tinkamą topic pagal theme-id
-        showEventModal(eventData, matchingTopic);
-    });
-}
 
 $(document).on('change', '.time-checkbox', function() {
     $('.time-checkbox').not(this).prop('checked', false);  
 });
 
-$(document).ready(function() {
-    attachEventListeners();
-    $('.calendar').click(function(e) {
-        e.stopImmediatePropagation();
-        $('#eventModal').hide();
-        closeEventModal();
-    });
-});
 
 
 $(document).on('change', '.time-checkbox', function() {
@@ -235,6 +214,8 @@ $(document).on('change', '.time-checkbox', function() {
         $('.registration-button').hide();
     }
 });
+
+
 
 /// Registration member script
 $(document).ready(function(){
@@ -250,5 +231,27 @@ $(document).ready(function(){
                 window.location.href = "registration-member.php?message=success"; 
             }
         });
+    });
+});
+
+function attachEventListeners() {
+    $('.event-view').off('click').click(function(e) {
+        e.stopImmediatePropagation();
+        const eventData = {
+            id: $(this).data('theme-id'),
+            title: $(this).data('title'),
+            date: $(this).data('date'),
+            color: $(this).data('color')
+        };
+        const matchingTopic = eventTopics.find(topic => topic.theme_id === eventData.id);
+        showEventModal(eventData, matchingTopic);
+    });
+}
+$(document).ready(function() {
+    attachEventListeners();
+    $('.calendar').click(function(e) {
+        e.stopImmediatePropagation();
+        $('#eventModal').hide();
+        closeEventModal();
     });
 });

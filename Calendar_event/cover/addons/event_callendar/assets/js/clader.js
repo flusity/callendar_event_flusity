@@ -11,7 +11,7 @@ function updateCalendar(month, year) {
         data: { 'month': month, 'year': year },
         success: function(data) {
            
-            $('#calendar-container').html(data);
+            $('#calendarContainer').html(data);
            
             attachEventListeners();
         }

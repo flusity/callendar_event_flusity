@@ -332,7 +332,7 @@ if (isset($admin_label)) {
     echo '<h3>' . htmlspecialchars($admin_label) . '</h3>';
 }?>
 
-<div id="calendar-container" class="content event-callendar">
+<div id="calendarContainer" class="content event-callendar">
 <?php 
  require_once 'callendar.php';
 echo '</div>

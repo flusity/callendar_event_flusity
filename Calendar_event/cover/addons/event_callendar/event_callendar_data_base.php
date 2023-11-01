@@ -59,11 +59,13 @@ $createTable5 = "CREATE TABLE IF NOT EXISTS {$prefix['table_prefix']}_event_rese
     event_users_member_id INT(11) DEFAULT NULL,
     event_target_audience TEXT DEFAULT NULL,
     reserve_event_time TIME DEFAULT NULL,
-    reserve_date date DEFAULT NULL,
+    reserve_date DATE DEFAULT NULL,
     reservation_description TEXT DEFAULT NULL,
+    event_status ENUM('1', '2', '3', '4') DEFAULT '3',
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
+
 
 $createTable6 = "CREATE TABLE IF NOT EXISTS {$prefix['table_prefix']}_callendar_users_member (
     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,

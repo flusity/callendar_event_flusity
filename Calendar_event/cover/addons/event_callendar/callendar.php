@@ -1,17 +1,16 @@
 <?php if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+date_default_timezone_set('Europe/Vilnius');
 
 require_once 'class_callendar/class_callendar.php';
 
-date_default_timezone_set('Europe/Vilnius');
 
-//$year = isset($_GET['year']) ? $_GET['year'] : date("Y");
-//$month = isset($_GET['month']) ? $_GET['month'] : date("m");
-//$day = isset($_GET['day']) ? $_GET['day'] : date("d");
-//$calendar = new Calendar("$year-$month-$day");
+//$year = 2023;//isset($_GET['year']) ? $_GET['year'] : date("Y");
+//$month = 11;//isset($_GET['month']) ? $_GET['month'] : date("m");
+//$day = 29; //isset($_GET['day']) ? $_GET['day'] : date("d");
 $calendar = new Calendar();
-
+//echo "$year-$month-$day";
 if (isset($_SESSION['holidays'])) {
     $holidays = $_SESSION['holidays'];
     $calendar->add_holidays($holidays);

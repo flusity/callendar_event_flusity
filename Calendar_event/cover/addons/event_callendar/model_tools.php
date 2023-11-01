@@ -245,7 +245,7 @@ if ($mode === 'create' || $addon) { ?>
         </div>
         <div class="tab-pane fade" id="eventRegistration" data-tab="eventRegistration">
             <div class="form-group row p-2">
-                <h3>
+                <h3 class="text-center pt-3">
                     <?php echo t('Event registration'); ?>
                 </h3>
                 <?php require ("event_registration.php");?>
@@ -311,12 +311,7 @@ if ($mode === 'create' || $addon) { ?>
         return false;
     }
 
-    function confirmDelete4(url) {
-        if (confirm("Are you sure you want to delete this registration?")) {
-            window.location.href = url;
-        }
-        return false;
-    }
+
 
     function confirmDelete5(url) {
         if (confirm("Are you sure you want to delete this member User?")) {
@@ -325,6 +320,16 @@ if ($mode === 'create' || $addon) { ?>
         return false;
     }
 
+    function confirmDelete4(url) {
+        if (confirm("Are you sure you want to delete this reservation?")) {
+            window.location.href = url;
+        }
+        return false;
+    }
+
+    function cancelEdit() {
+        document.getElementById("editFormCancel").style.display = "none";
+    }
     function deleteEventAddon(addonId) {
         $("#deleteModal").modal("show");
         $("#confirmDelete").off('click').on('click', function() {
