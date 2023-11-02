@@ -9,16 +9,11 @@ function convertMinutesToHoursMinutes(minutes) {
     const hours = Math.floor(minutes / 60);
     const remainingMinutes = minutes % 60;
     if (hours > 0 && remainingMinutes > 0) {
-        return `${hours} val. ${remainingMinutes} min.`;
-    } else if (hours > 0 && remainingMinutes === 0) {
-       
-        if (remainingMinutes === 0) {
-            return `${hours} val.`;
-        } else { 
-            return `${hours} val. ${remainingMinutes} min.`;
-        }
+        return `${hours} ${translations.hours} ${remainingMinutes} ${translations.minutes}`;
+    } else if (hours > 0) {
+        return `${hours} ${translations.hours}`;
     } else {
-        return `${minutes} min.`;
+        return `${minutes} ${translations.minutes}`;
     }
 }
 
@@ -63,16 +58,16 @@ function createEventModal(themeId, registrationAllowed, eventDate, eventTitle) {
                 <div class="panel">
                     <div class="flex-container">
                         <div class="flex-item-left">
-                            <p><b>Duration time:</b> ${timeString} <br><b>Audience:</b> ${topic.targetAudience} kl.</p>
+                            <p><b>${translations.duration_time}:</b> ${timeString} <br><b>${translations.Audience}:</b> ${topic.targetAudience} </p>
                         </div>
                         <div class="flex-item-right">
-                        <p><b>Available times: </b><br>
+                        <p><b>${translations.available_times}: </b><br>
                         ${timeOptionsHTML}</p>
                     </div>
                     </div>
                     <img src="${topic.imageUrl}" class="accordion-event-image" alt="image">
                     <p>${topic.shortDescription} <br>
-                    <b>Metodinė medžiaga:</b> <br>${topic.methodicalMaterial}</p>
+                    <b>${translations.methodical_material}:</b> <br>${topic.methodicalMaterial}</p>
                     <form action="registration-member.php" method="post">
                     <input type="hidden" name="event_laboratory_id" value="${topic.theme_id}">
                     <input type="hidden" name="event_item_id" value="${topic.id}">
@@ -81,7 +76,7 @@ function createEventModal(themeId, registrationAllowed, eventDate, eventTitle) {
                     <input type="hidden" name="event_reserve_day" value="${eventDate}">
                     <input type="hidden" name="event_target_audience" value="${topic.targetAudience}">
                     <input type="hidden" name="selectedTime" class="selected-time-input" value="">
-                    <button type="submit" class="btn btn-primary registration-button"  style="display: none; margin-bottom: 10px">Registration</button>
+                    <button type="submit" class="btn btn-primary registration-button"  style="display: none; margin-bottom: 10px">${translations.registration}</button>
                   </form>
                 </div>`;
         }
@@ -161,7 +156,7 @@ function showEventModal(eventData,topic) {
     registrationEndDate.setDate(registrationEndDate.getDate() - endRegister);
 
     if (registrationEndDate <= currentDate) {
-        eventData.title += ' <span class="span-title" style="color: #d55258;">(Registration has ended)</span>';
+        eventData.title += `  <span class="span-title" style="color: #d55258;">(${translations.registration_has_ended})</span>`;
         registrationAllowed = false;
     }
 
@@ -173,8 +168,8 @@ function showEventModal(eventData,topic) {
     const eventDateElement = document.getElementById("eventDate");
     const eventIdElement = document.getElementById("themeId");
 
-    eventTitleElement.innerHTML = "Location: " + eventData.title;
-    eventDateElement.innerText = "Date chosen: " + eventData.date;
+    eventTitleElement.innerHTML = `${translations.location}: ` + eventData.title;
+    eventDateElement.innerText = `${translations.date_chosen}: ` + eventData.date;
     eventIdElement.innerText = "" + eventData.id;
 
     modal.style.opacity = 0;
