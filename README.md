@@ -34,3 +34,5 @@ Event calendar for flusity cms
 - **Flusity CMS versija**: 2 arba naujesnė
 - **PHP versija**: 7.2 ir naujesnė
 - **MySQL versija**: 5.2.1 arba naujesnė
+
+<img src="https://flusity.com/uploads/event_calendar_fb6b21bcc2bee459.png" width=40%/>
