@@ -21,7 +21,7 @@ function renderTimeOptions(timeOptions, eventDate, reserveDayOption, reserveDayT
     let optionsHTML = '';
     if (Array.isArray(reserveDayOption) && reserveDayOption.includes(eventDate)) {
         if (timeOptions.length === 0 ) {
-            return 'visi laikai užimti';
+            return `${translations.all_times_are_reserved}`;
         }
         Object.values(timeOptions).forEach(time => {
             optionsHTML += `
