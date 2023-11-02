@@ -8,6 +8,8 @@
 <?php if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
     }
+    $translations = ($selected_lang == $lang_code) ? array_merge($translations_, ${"translations_" . $lang_code}) : $translations_en;
+                           
 ?>
 <?php require_once 'menu-horizontal.php';  ?>
 <header class="masthead register-header" style="background-image: url('/cover/themes/free-time/assets/img/pexels-pixabay-279810.jpg');height: 200px;padding-top: 0px;padding-bottom: 0px;margin-bottom: -16px;">
@@ -37,7 +39,6 @@
                             </div>
                             <?php unset($_SESSION['success_message']); ?>
                         <?php endif; 
-                            $translations = ($selected_lang == $lang_code) ? array_merge($translations_, ${"translations_" . $lang_code}) : $translations_en;
                             $csrf_token = generateCSRFToken();
                         ?>
                 </div>
@@ -57,79 +58,79 @@
                     if(isset($selectedTime) && $selectedTime != "") {  ?>
                     <form action="" method="POST" id="registrationForm" class="">
                     <div class="mb-3 row">
-                            <div class="col-sm-12">
-                                <h2 style="font-weight: 300;"><b><?php echo isset($translations['location']) ? $translations['location'] : 'Location'; ?> </b><?php echo $event_laboratory_title; ?></h2>
-                            <input type="hidden" class="form-control disable" id="reserve_event_laboratory_id" name="reserve_event_laboratory_id" value="<?php echo $event_laboratory_id; ?>" readonly style="background-color: #f3f3f3;">
-                        
-                            <h4 style="font-weight: 300;"><b><?php echo isset($translations['practice']) ? $translations['practice'] : 'Practice'; ?>: </b><?php echo $event_item_title; ?></h4>
-                            <input type="hidden" class="form-control disable" id="event_item_id" name="event_item_id" value="<?php echo $event_item_id; ?>" readonly style="background-color: #f3f3f3;">
-                            
-                            <h4 style="font-weight: 300;"><b><?php echo isset($translations['audience']) ? $translations['audience'] : 'Audience'; ?>: </b><?php echo $event_target_audience; ?></h4>
-                            <input type="hidden" class="form-control disable" id="event_target_audience" name="event_target_audience" value="<?php echo $event_target_audience; ?>" readonly style="background-color: #f3f3f3;">
-                            </div>
+                        <div class="col-sm-12">
+                            <h2 style="font-weight: 300;"><b><?php echo htmlspecialchars(isset($translations['location']) ? $translations['location'] : 'Location', ENT_QUOTES, 'UTF-8'); ?> </b><?php echo htmlspecialchars($event_laboratory_title, ENT_QUOTES, 'UTF-8'); ?></h2>
+                            <input type="hidden" class="form-control disable" id="reserve_event_laboratory_id" name="reserve_event_laboratory_id" value="<?php echo htmlspecialchars($event_laboratory_id, ENT_QUOTES, 'UTF-8'); ?>" readonly style="background-color: #f3f3f3;">
+
+                            <h4 style="font-weight: 300;"><b><?php echo htmlspecialchars(isset($translations['practice']) ? $translations['practice'] : 'Practice', ENT_QUOTES, 'UTF-8'); ?>: </b><?php echo htmlspecialchars($event_item_title, ENT_QUOTES, 'UTF-8'); ?></h4>
+                            <input type="hidden" class="form-control disable" id="event_item_id" name="event_item_id" value="<?php echo htmlspecialchars($event_item_id, ENT_QUOTES, 'UTF-8'); ?>" readonly style="background-color: #f3f3f3;">
+
+                            <h4 style="font-weight: 300;"><b><?php echo htmlspecialchars(isset($translations['audience']) ? $translations['audience'] : 'Audience', ENT_QUOTES, 'UTF-8'); ?>: </b><?php echo htmlspecialchars($event_target_audience, ENT_QUOTES, 'UTF-8'); ?></h4>
+                            <input type="hidden" class="form-control disable" id="event_target_audience" name="event_target_audience" value="<?php echo htmlspecialchars($event_target_audience, ENT_QUOTES, 'UTF-8'); ?>" readonly style="background-color: #f3f3f3;">
                         </div>
-                    <div class="row">
-                            <div class="col-sm-5 mb-3" style="min-width: 240px;">
-                            <?php echo isset($translations['event_time_and_day_selected']) ? $translations['event_time_and_day_selected'] : 'Event time and day selected'; ?>
                         </div>
-                            <div class="col-sm-3 mb-3">
-                            <input type="time" class="form-control disable" id="selectedTime" name="reserve_event_time" value="<?php echo $selectedTime; ?>" readonly style="background-color: #f3f3f3; min-width: 80px;">
-                            </div>
-                            <div class="col-sm-3 mb-3">
-                                <input type="date" class="form-control disable" id="reserveDate" name="reserve_date" value="<?php echo $reserve_date; ?>" readonly style="background-color: #f3f3f3; min-width: 80px;">
-                            </div>
+                        <div class="row">
+                        <div class="col-sm-5 mb-3" style="min-width: 240px;">
+                            <?php echo htmlspecialchars(isset($translations['event_time_and_day_selected']) ? $translations['event_time_and_day_selected'] : 'Event time and day selected', ENT_QUOTES, 'UTF-8'); ?>
                         </div>
-                    
-                        <div class="mb-3"><input type="text" class="form-control" id="member_login_name" name="member_login_name" placeholder="<?php echo isset($translations['login_name']) ? $translations['login_name'] : 'Login Name'; ?>" required></div>
+                        <div class="col-sm-3 mb-3">
+                            <input type="time" class="form-control disable" id="selectedTime" name="reserve_event_time" value="<?php echo htmlspecialchars($selectedTime, ENT_QUOTES, 'UTF-8'); ?>" readonly style="background-color: #f3f3f3; min-width: 80px;">
+                        </div>
+                        <div class="col-sm-3 mb-3">
+                            <input type="date" class="form-control disable" id="reserveDate" name="reserve_date" value="<?php echo htmlspecialchars($reserve_date, ENT_QUOTES, 'UTF-8'); ?>" readonly style="background-color: #f3f3f3; min-width: 80px;">
+                        </div>
+                        </div>
+                                    
+                        <div class="mb-3"><input type="text" class="form-control" id="member_login_name" name="member_login_name" placeholder="<?php echo htmlspecialchars(isset($translations['login_name']) ? $translations['login_name'] : 'Login Name', ENT_QUOTES, 'UTF-8'); ?>" required></div>
 
-                        <div class="mb-3"><input type="text" class="form-control" id="member_first_name" name="member_first_name" placeholder="<?php echo isset($translations['first_name']) ? $translations['first_name'] : 'First Name'; ?>" required></div>
+                        <div class="mb-3"><input type="text" class="form-control" id="member_first_name" name="member_first_name" placeholder="<?php echo isset($translations['first_name']) ? htmlspecialchars($translations['first_name'], ENT_QUOTES, 'UTF-8') : 'First Name'; ?>" required></div>
 
-                        <div class="mb-3"><input type="text" class="form-control" id="member_last_name" name="member_last_name" placeholder="<?php echo isset($translations['last_name']) ? $translations['last_name'] : 'Last Name'; ?>" required></div>
+                        <div class="mb-3"><input type="text" class="form-control" id="member_last_name" name="member_last_name" placeholder="<?php echo isset($translations['last_name']) ? htmlspecialchars($translations['last_name'], ENT_QUOTES, 'UTF-8') : 'Last Name'; ?>" required></div>
 
-                        <div class="mb-3"><input type="text" class="form-control" id="member_telephone" name="member_telephone" placeholder="<?php echo isset($translations['telephone']) ? $translations['telephone'] : 'Telephone'; ?>" required></div>
+                        <div class="mb-3"><input type="text" class="form-control" id="member_telephone" name="member_telephone" placeholder="<?php echo isset($translations['telephone']) ? htmlspecialchars($translations['telephone'], ENT_QUOTES, 'UTF-8') : 'Telephone'; ?>" required></div>
 
-                        <div class="mb-3"><input type="email" class="form-control" id="member_email" name="member_email" placeholder="<?php echo isset($translations['email']) ? $translations['email'] : 'Email'; ?>" required></div>
+                        <div class="mb-3"><input type="email" class="form-control" id="member_email" name="member_email" placeholder="<?php echo isset($translations['email']) ? htmlspecialchars($translations['email'], ENT_QUOTES, 'UTF-8') : 'Email'; ?>" required></div>
 
-                        <div class="mb-3"><input type="password" class="form-control" id="member_password" name="member_password" placeholder="<?php echo isset($translations['password']) ? $translations['password'] : 'Password'; ?>" required></div>
+                        <div class="mb-3"><input type="password" class="form-control" id="member_password" name="member_password" placeholder="<?php echo isset($translations['password']) ? htmlspecialchars($translations['password'], ENT_QUOTES, 'UTF-8') : 'Password'; ?>" required></div>
 
-                        <div class="mb-3"><input type="password" class="form-control" id="re_member_password" name="re_member_password" placeholder="<?php echo isset($translations['repeat_password']) ? $translations['repeat_password'] : 'Repeat password'; ?>" required></div>
+                        <div class="mb-3"><input type="password" class="form-control" id="re_member_password" name="re_member_password" placeholder="<?php echo isset($translations['repeat_password']) ? htmlspecialchars($translations['repeat_password'], ENT_QUOTES, 'UTF-8') : 'Repeat password'; ?>" required></div>
 
                         <hr class="" style="color: black;">
-                        <h4 style="font-weight: 300;"><?php echo isset($translations['additional_information']) ? $translations['additional_information'] : 'Additional information'; ?></4>
+                        <h4 style="font-weight: 300;"><?php echo isset($translations['additional_information']) ? htmlspecialchars($translations['additional_information'], ENT_QUOTES, 'UTF-8') : 'Additional information'; ?></4>
                         <hr class="" style="color: black;">
 
                         <div class="mb-3">
-                        <input type="text" class="form-control" id="member_institution" name="member_institution" placeholder="<?php echo isset($translations['institution']) ? $translations['institution'] : 'Institution';?>">
+                        <input type="text" class="form-control" id="member_institution" name="member_institution" placeholder="<?php echo isset($translations['institution']) ? htmlspecialchars($translations['institution'], ENT_QUOTES, 'UTF-8') : 'Institution';?>">
                         </div>
 
                         <div class="mb-3">
-                        <input type="text" class="form-control" id="member_address_institution" name="member_address_institution" placeholder="<?php echo isset($translations['institution_address']) ? $translations['institution_address'] : 'Institution Address';?>" required>
+                        <input type="text" class="form-control" id="member_address_institution" name="member_address_institution" placeholder="<?php echo isset($translations['institution_address']) ? htmlspecialchars($translations['institution_address'], ENT_QUOTES, 'UTF-8') : 'Institution Address';?>" required>
                         </div>
 
                         <div class="row">
                         <div class="col-sm-4 mb-3">
-                        <label for="member_invoice" class="nowrap" style="font-weight: 300;"><?php echo isset($translations['invoice']) ? $translations['invoice'] : 'Invoice'; ?></label>
+                        <label for="member_invoice" class="nowrap" style="font-weight: 300;"><?php echo isset($translations['invoice']) ? htmlspecialchars($translations['invoice'], ENT_QUOTES, 'UTF-8') : 'Invoice'; ?></label>
                         </div>
                         <div class="col-sm-2 mb-3">
                             <select class="form-control" id="member_invoice" name="member_invoice">
-                            <option value="0"><?php echo isset($translations['no']) ? $translations['no'] : 'No'; ?></option>
-                            <option value="1"><?php echo isset($translations['yes']) ? $translations['yes'] : 'Yes'; ?></option>
+                                <option value="0"><?php echo isset($translations['no']) ? htmlspecialchars($translations['no'], ENT_QUOTES, 'UTF-8') : 'No'; ?></option>
+                                <option value="1"><?php echo isset($translations['yes']) ? htmlspecialchars($translations['yes'], ENT_QUOTES, 'UTF-8') : 'Yes'; ?></option>
                             </select>
                         </div>
                         </div>
 
                         <div class="mb-3">
-                        <input type="text" class="form-control" id="member_employee_position" name="member_employee_position" placeholder="<?php echo isset($translations['employee_position']) ? $translations['employee_position'] : 'Employee Position';?>" required>
+                        <input type="text" class="form-control" id="member_employee_position" name="member_employee_position" placeholder="<?php echo isset($translations['employee_position']) ? htmlspecialchars($translations['employee_position'], ENT_QUOTES, 'UTF-8') : 'Employee Position';?>" required>
                         </div>
 
                         <div class="mb-3">
-                        <textarea class="form-control" id="member_description" name="member_description" placeholder="<?php echo isset($translations['additional_information']) ? $translations['additional_information'] : 'Additional information';?>"></textarea>
+                        <textarea class="form-control" id="member_description" name="member_description" placeholder="<?php echo isset($translations['additional_information']) ? htmlspecialchars($translations['additional_information'], ENT_QUOTES, 'UTF-8') : 'Additional information';?>"></textarea>
                         </div>
 
                         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8'); ?>">
 
                         <div class="mb-3">
-                        <button class="btn btn-primary d-block w-100" type="submit" style="background: rgb(230,227,160);--bs-primary: #7faef2;--bs-primary-rgb: 127,174,242;border-style: none;color: rgb(136,132,132);"><?php echo isset($translations['register_event']) ? $translations['register_event'] : 'Register event'; ?></button>
+                            <button class="btn btn-primary d-block w-100" type="submit" style="background: rgb(230,227,160);--bs-primary: #7faef2;--bs-primary-rgb: 127,174,242;border-style: none;color: rgb(136,132,132);"><?php echo htmlspecialchars(isset($translations['register_event']) ? $translations['register_event'] : 'Register event', ENT_QUOTES, 'UTF-8'); ?></button>
                         </div>
 
                     </form>
