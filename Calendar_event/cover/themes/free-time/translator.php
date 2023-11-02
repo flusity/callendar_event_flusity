@@ -56,6 +56,7 @@ $translations_it = array(
     'or' => 'o',
     'back_to' => 'ritorna a',
     'event_calendar' => 'Calendario eventi',
+    'all_times_are_reserved' =>'tutti gli orari sono riservati'
 );
 
 $translations_lt = array(
@@ -106,6 +107,7 @@ $translations_lt = array(
     'or' => 'arba',
     'back_to' => 'grįžti į',
     'event_calendar' => 'Renginių kalendorius',
+    'all_times_are_reserved' =>'visi laikai užimti'
 );
 
 $translations_en = array(
@@ -156,6 +158,7 @@ $translations_en = array(
     'or' => 'or',
     'back_to' => 'back to',
     'event_calendar' => 'Event calendar',
+    'all_times_are_reserved' =>'all times are reserved'
 );
 
 
