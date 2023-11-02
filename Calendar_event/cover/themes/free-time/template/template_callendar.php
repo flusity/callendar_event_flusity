@@ -1,6 +1,6 @@
 <?php 
 /*
- @MiniFrame css karkasas Lic GNU
+ @Flusity cms
  Author Darius Jakaitis, author web site https://www.flusity.com
  fix-content
 */
