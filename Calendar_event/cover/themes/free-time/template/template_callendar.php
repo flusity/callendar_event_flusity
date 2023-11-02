@@ -1,20 +1,19 @@
 <?php 
- if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
-    }
 /*
  @MiniFrame css karkasas Lic GNU
  Author Darius Jakaitis, author web site https://www.flusity.com
  fix-content
 */
+ if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+    }
 
 ?>
-
-
 <?php require_once 'menu-horizontal.php';  ?>
 <header class="masthead register-header" style="background-image: url('/cover/themes/free-time/assets/img/pexels-pixabay-279810.jpg');height: 200px;padding-top: 0px;padding-bottom: 0px;margin-bottom: -16px;">
 <div class="overlay register-head-ov" style="height: 200px;background: rgba(0,0,0,0.84);padding-bottom: 0px;"></div>
 </header>
+ 
     <section class="py-4 py-xl-5" style="margin-top: -3px;">
         <div class="container">
             <div class="row ">
@@ -42,7 +41,6 @@
     }
     ?>
 </div>
-
     <div class="row">
             <div class="col-md-12 mb-2 p-2"> 
                 <?php 
@@ -53,10 +51,10 @@
                         print "";
                     }
                     ?>
-               
-               
             </div>
             </div>
         </div>
     </section>
-
+<script>
+    var translations = <?php echo json_encode($translations); ?>;
+</script>
