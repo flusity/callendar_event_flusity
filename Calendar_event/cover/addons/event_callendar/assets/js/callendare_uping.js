@@ -212,22 +212,80 @@ $(document).on('change', '.time-checkbox', function() {
 
 
 
-/// Registration member script
-$(document).ready(function(){
-    $("#registrationForm").on("submit", function(event){
-        event.preventDefault();
-        
+
+function checkPasswordsMatch() {
+    var password = document.getElementById("member_password").value;
+    var confirmPassword = document.getElementById("re_member_password").value;
+    if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return false; 
+    }
+    return true; 
+}
+
+function checkUserExists() {
+    return new Promise((resolve, reject) => {
+        var username = $("#member_login_name").val();
+        var email = $("#member_email").val();
         $.ajax({
             url: "../../cover/addons/event_callendar/action/re_member.php",
             type: "POST",
-            data: $(this).serialize(),
-            success: function(response){
-                console.log(response);
-                window.location.href = "registration-member.php?message=success"; 
+            data: {
+                member_login_name: username,
+                member_email: email,
+                check_exist: true
+            },
+            success: function(response) {
+                if (response.trim() === 'exists') { // Turi atitikti grąžintą atsakymą iš serverio
+                    reject(new Error("Username or email already registered."));
+                } else {
+                    resolve();
+                }
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                reject(new Error("An error occurred while checking user existence."));
             }
         });
     });
+}
+
+$(document).ready(function() {
+    $("#registrationForm").on("submit", function(event) {
+        event.preventDefault();
+        if (!checkPasswordsMatch()) {
+            return;
+        }
+        checkUserExists().then(function() {
+            submitForm();
+        }).catch(function(error) {
+            alert(error.message);
+        });
+    });
 });
+
+function submitForm() {
+    $.ajax({
+        url: "../../cover/addons/event_callendar/action/re_member.php",
+        type: "POST",
+        data: $("#registrationForm").serialize() + '&register=true', // Pridėti papildomą parametrą kad serveris žinotų jog siunčiami registracijos duomenys
+        success: function(response) {
+            var trimmedResponse = response.trim();
+            if (trimmedResponse === 'success') {
+                window.location.href = "registration-member.php?message=success";
+            } else if (trimmedResponse === 'exists') {
+                alert('Username or email already registered.');
+            } else {
+                window.location.href = "registration-member.php?message=success";
+            }
+        },
+        
+        error: function(xhr, textStatus, errorThrown) {
+            alert('An error occurred during registration.');
+        }
+    });
+}
+
+
 
 function attachEventListeners() {
     $('.event-view').off('click').click(function(e) {
