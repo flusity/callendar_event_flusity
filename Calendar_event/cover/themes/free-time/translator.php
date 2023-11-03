@@ -48,7 +48,6 @@ $translations_it = array(
     'no' => 'No',
     'yes' => 'Sì',
     'employee_position' => 'Posizione del dipendente',
-    'additional_information' => 'Informazioni aggiuntive',
     'register_event' => 'Registrati all\'evento',
     'not_selected_event_time' => 'Non hai selezionato un orario per l\'evento. La registrazione è attualmente sospesa. Si prega di riprovare più tardi.',
     'go_to' => 'Vai a',
@@ -56,7 +55,8 @@ $translations_it = array(
     'or' => 'o',
     'back_to' => 'ritorna a',
     'event_calendar' => 'Calendario eventi',
-    'all_times_are_reserved' =>'tutti gli orari sono riservati'
+    'all_times_are_reserved' =>'tutti gli orari sono riservati',
+    'event_up' => ''
 );
 
 $translations_lt = array(
@@ -99,7 +99,6 @@ $translations_lt = array(
     'no' => 'Ne',
     'yes' => 'Taip',
     'employee_position' => 'Darbuotojo pareigos',
-    'additional_information' => 'Papildoma informacija',
     'register_event' => 'Registruotis į renginį',
     'not_selected_event_time' => 'Nepasirinkote renginio laiko. Registracija šiuo metu sustabdyta. Bandykite dar kartą vėliau.',
     'go_to' => 'Eiti į',
@@ -107,7 +106,8 @@ $translations_lt = array(
     'or' => 'arba',
     'back_to' => 'grįžti į',
     'event_calendar' => 'Renginių kalendorius',
-    'all_times_are_reserved' =>'visi laikai užimti'
+    'all_times_are_reserved' =>'visi laikai užimti',
+    'event_up' => ''
 );
 
 $translations_en = array(
@@ -150,7 +150,6 @@ $translations_en = array(
     'no' => 'No',
     'yes' => 'Yes',
     'employee_position' => 'Employee Position',
-    'additional_information' => 'Additional information',
     'register_event' => 'Register event',
     'not_selected_event_time' => 'You have not selected an event time. Registration is currently suspended. Please try again later.',
     'go_to' => 'Go to',
@@ -158,7 +157,8 @@ $translations_en = array(
     'or' => 'or',
     'back_to' => 'back to',
     'event_calendar' => 'Event calendar',
-    'all_times_are_reserved' =>'all times are reserved'
+    'all_times_are_reserved' =>'all times are reserved',
+    'event_up' => ''
 );
 
 
