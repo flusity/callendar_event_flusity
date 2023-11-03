@@ -136,9 +136,12 @@
 
                     </form>
 
-                    <?php } else {
+                    <?php } else if(empty($selectedTime)){
                             echo "<p>" . (isset($translations['not_selected_event_time']) ? $translations['not_selected_event_time'] : 'You have not selected an event time. Registration is currently suspended. Please try again later.') . "</p>
                             <div class='container mt-5 mb-3 no-register'></div>";
+                        }  else {
+                            echo "<p>" . (isset($translations['event_up']) ? $translations['event_up'] : '') . "</p>
+                            <div class='container mt-5 mb-3 register'></div>";
                         }?>
                         <p><?php echo isset($translations['go_to']) ? $translations['go_to'] : 'Go to'; ?>&nbsp;<a href="/" class="btn-link"><?php echo strtolower(isset($translations['home_page']) ? $translations['home_page'] : 'Home page'); ?></a>&nbsp;<?php echo isset($translations['or']) ? $translations['or'] : 'or';?>&nbsp;
                         <?php echo isset($translations['back_to']) ? $translations['back_to'] : 'back to'; ?>&nbsp;<a href="/event-calendar" class="btn-link"><?php echo strtolower(isset($translations['event_calendar']) ? $translations['event_calendar'] : 'Event calendar'); ?></a>&nbsp;<p>
