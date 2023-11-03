@@ -78,10 +78,12 @@ $createTable6 = "CREATE TABLE IF NOT EXISTS {$prefix['table_prefix']}_callendar_
     member_institution TEXT DEFAULT NULL,
     member_address_institution TEXT DEFAULT NULL,
     member_invoice TEXT DEFAULT NULL,
+    member_password VARCHAR(255) NOT NULL,
     member_employee_position TEXT DEFAULT NULL,
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
   )";
+
 
 $dropTable1 = "DROP TABLE IF EXISTS {$prefix['table_prefix']}_event_callendar"; 
 $dropTable2 = "DROP TABLE IF EXISTS {$prefix['table_prefix']}_event_callendar_item";
