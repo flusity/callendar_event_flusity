@@ -1,6 +1,6 @@
 <?php 
 /*
- @Flusity 
+ @Flusity cms
  Author Darius Jakaitis, author web site https://www.flusity.com
  fix-content
 */
@@ -26,12 +26,13 @@
                 <div class="col-md-8 col-lg-8 col-xl-6" style="margin-top: -24px;padding-top: 0px;margin-right: 1px;">
                     
                 <div class="col-md-12 text-center" style="padding-bottom: 0px;"> 
-                   
-                        <?php if (isset($error_message)): ?>
-                            <div class="alert alert-danger" role="alert">
-                                <?php echo htmlspecialchars($error_message, ENT_QUOTES, 'UTF-8'); ?>
-                            </div>
-                        <?php endif; 
+                   <?php if (isset($_SESSION['error_message'])) {
+                                echo "<div class='alert alert-danger alert-dismissible fade show slow-fade'>
+                                    " . htmlspecialchars($_SESSION['error_message']) . "
+                                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                </div>";
+                                unset($_SESSION['error_message']);
+                            } 
                         if (isset($_SESSION['success_message'])): ?>
                             <div class="alert alert-success alert-dismissible fade show slow-fade">
                                 <?php echo htmlspecialchars($_SESSION['success_message']); ?>
@@ -56,7 +57,7 @@
    
 
                     if(isset($selectedTime) && $selectedTime != "") {  ?>
-                    <form action="" method="POST" id="registrationForm" class="">
+                    <form action="" method="POST" id="registrationForm" onsubmit="return checkPasswordsMatch()">
                     <div class="mb-3 row">
                         <div class="col-sm-12">
                             <h2 style="font-weight: 300;"><b><?php echo htmlspecialchars(isset($translations['location']) ? $translations['location'] : 'Location', ENT_QUOTES, 'UTF-8'); ?> </b><?php echo htmlspecialchars($event_laboratory_title, ENT_QUOTES, 'UTF-8'); ?></h2>
