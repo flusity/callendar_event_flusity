@@ -24,22 +24,22 @@
             </div>
             <div class="row d-flex justify-content-center">
             <?php
-    if (isset($_SESSION['success_message'])) {
-        echo "<div class='alert alert-success alert-dismissible fade show slow-fade'>
-            " . htmlspecialchars($_SESSION['success_message']) . "
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        </div>";
-        unset($_SESSION['success_message']);
-    }
+            if (isset($_SESSION['success_message'])) {
+                echo "<div class='alert alert-success alert-dismissible fade show slow-fade'>
+                    " . htmlspecialchars($_SESSION['success_message']) . "
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>";
+                unset($_SESSION['success_message']);
+            }
 
-    if (isset($_SESSION['error_message'])) {
-        echo "<div class='alert alert-danger alert-dismissible fade show slow-fade'>
-            " . htmlspecialchars($_SESSION['error_message']) . "
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        </div>";
-        unset($_SESSION['error_message']);
-    }
-    ?>
+            if (isset($_SESSION['error_message'])) {
+                echo "<div class='alert alert-danger alert-dismissible fade show slow-fade'>
+                    " . htmlspecialchars($_SESSION['error_message']) . "
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>";
+                unset($_SESSION['error_message']);
+            }
+            ?>
 </div>
     <div class="row">
             <div class="col-md-12 mb-2 p-2"> 
