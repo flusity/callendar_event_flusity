@@ -78,6 +78,7 @@ try {
         }
 
 } catch (Exception $e) {
-    $_SESSION['error_message'] = $e->getMessage();
+    error_log($e->getMessage());
+    $_SESSION['error_message'] = "Įvyko klaida. Prašome bandyti vėliau arba kreiptis į sistemos administratorių.";
 }
 ?>
