@@ -137,9 +137,11 @@
                     </form>
 
                     <?php } else if(empty($selectedTime)){
+                           /*  
                             echo "<p>" . (isset($translations['not_selected_event_time']) ? $translations['not_selected_event_time'] : 'You have not selected an event time. Registration is currently suspended. Please try again later.') . "</p>
-                            <div class='container mt-5 mb-3 no-register'></div>";
-                        }  else {
+                            <div class='container mt-5 mb-3 no-register'></div>"; }  else  {
+                            */
+                        
                             echo "<p>" . (isset($translations['event_up']) ? $translations['event_up'] : '') . "</p>
                             <div class='container mt-5 mb-3 register'></div>";
                         }?>
