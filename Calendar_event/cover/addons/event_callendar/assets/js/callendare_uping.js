@@ -58,7 +58,7 @@ function createEventModal(themeId, registrationAllowed, eventDate, eventTitle) {
                 <div class="panel">
                     <div class="flex-container">
                         <div class="flex-item-left">
-                            <p><b>${translations.duration_time}:</b> ${timeString} <br><b>${translations.Audience}:</b> ${topic.targetAudience} </p>
+                            <p><b>${translations.duration_time}:</b> ${timeString} <br><b>${translations.audience}:</b> ${topic.targetAudience} </p>
                         </div>
                         <div class="flex-item-right">
                         <p><b>${translations.available_times}: </b><br>
