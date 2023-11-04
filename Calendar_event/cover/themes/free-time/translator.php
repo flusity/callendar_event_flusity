@@ -56,7 +56,14 @@ $translations_it = array(
     'back_to' => 'ritorna a',
     'event_calendar' => 'Calendario eventi',
     'all_times_are_reserved' =>'tutti gli orari sono riservati',
-    'event_up' => ''
+    'event_up' => '',
+    'login' => 'Collegare',
+    'logout' => 'Esci',
+    'member_login_form'=> 'Modulo di accesso membro',
+    'are_you_registered_then_you_can_just_log_in'=> 'Sei registrato? poi puoi semplicemente accedere',
+    'invalid_login_data' => 'Dati di accesso non validi',
+    'back_to_calendar_page_to_log_in' => 'vai alla pagina del calendario ed effettua il collegare',
+    'logged_in_as' => 'Collegato come'
 );
 
 $translations_lt = array(
@@ -107,7 +114,14 @@ $translations_lt = array(
     'back_to' => 'grįžti į',
     'event_calendar' => 'Renginių kalendorius',
     'all_times_are_reserved' =>'visi laikai užimti',
-    'event_up' => ''
+    'event_up' => '',
+    'login' => 'Prisijungti',
+    'logout' => 'Atsijungti',
+    'member_login_form'=> 'Vartotojų prisijungimo forma',
+    'are_you_registered_then_you_can_just_log_in' =>'Esate registruotas? tuomet galite tiesiog prisijungti',
+    'invalid_login_data' => 'Neteisingi prisijungimo duomenys',
+    'back_to_calendar_page_to_log_in' => 'grįžti į kalendoriaus puslapį ir prisijungti',
+    'logged_in_as' => 'Prisijungėte kaip'
 );
 
 $translations_en = array(
@@ -158,7 +172,14 @@ $translations_en = array(
     'back_to' => 'back to',
     'event_calendar' => 'Event calendar',
     'all_times_are_reserved' =>'all times are reserved',
-    'event_up' => ''
+    'event_up' => '',
+    'login' => 'Log in',
+    'logout' => 'Log out',
+    'member_login_form'=> 'Member login form',
+    'are_you_registered_then_you_can_just_log_in' =>'Are you registered? then you can just log in',
+    'invalid_login_data' => 'Invalid login data',
+    'back_to_calendar_page_to_log_in' => 'back to calendar page to Log in',
+    'logged_in_as' => 'Logged in as'
 );
 
 
