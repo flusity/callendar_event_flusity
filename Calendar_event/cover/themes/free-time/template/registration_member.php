@@ -26,13 +26,13 @@
                 <div class="col-md-8 col-lg-8 col-xl-6" style="margin-top: -24px;padding-top: 0px;margin-right: 1px;">
                     
                 <div class="col-md-12 text-center" style="padding-bottom: 0px;"> 
-                   <?php if (isset($_SESSION['error_message'])) {
+                   <?php if (isset($_SESSION['error_message'])) :
                                 echo "<div class='alert alert-danger alert-dismissible fade show slow-fade'>
                                     " . htmlspecialchars($_SESSION['error_message']) . "
                                     <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                 </div>";
                                 unset($_SESSION['error_message']);
-                            } 
+                            endif; 
                         if (isset($_SESSION['success_message'])): ?>
                             <div class="alert alert-success alert-dismissible fade show slow-fade">
                                 <?php echo htmlspecialchars($_SESSION['success_message']); ?>
@@ -53,21 +53,60 @@
                             $reserve_date = isset($_POST["event_reserve_day"]) ? $_POST["event_reserve_day"] : null;
                             $event_target_audience = isset($_POST["event_target_audience"]) ? $_POST["event_target_audience"] : null;       
                         }
-                      
-   
+                      ?>
+                    <?php
+                    if(!isset($_SESSION['member_user_name'])) {?>
+                  
+                    <p><?php echo isset($translations['are_you_registered_then_you_can_just_log_in']) ? htmlspecialchars(
+                        $translations['are_you_registered_then_you_can_just_log_in'], ENT_QUOTES, 'UTF-8') : 'Are you registered? then you can just log in'; ?> <a type="button" class="link" style="cursor: poiner;" data-bs-toggle="modal" data-bs-target="#loginModal"><?php echo isset($translations['login']) ? htmlspecialchars($translations['login'], ENT_QUOTES, 'UTF-8') : 'Login'; ?></a>
+                    </p>
 
-                    if(isset($selectedTime) && $selectedTime != "") {  ?>
+
+                <!-- Modal -->
+                    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="loginModalLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <form action="" id="loginMemberForm" method="POST">
+                                <input type="text" class="form-control mb-3" name="member_login_name" placeholder="<?php echo htmlspecialchars(isset($translations['login_name']) ? $translations['login_name'] : 'Login Name', ENT_QUOTES, 'UTF-8'); ?>">
+                                <input type="password" class="form-control mb-3" name="member_password" placeholder="<?php echo isset($translations['password']) ? htmlspecialchars($translations['password'], ENT_QUOTES, 'UTF-8') : 'Password'; ?>">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="mb-3"><?php echo isset($translations['login']) ? htmlspecialchars($translations['login'], ENT_QUOTES, 'UTF-8') : 'Login'; ?></button>           
+                            </form>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+
+
+                   <?php  } else { 
+                     echo " <p> Sveiki <b>". $_SESSION['member_user_name'];
+                   ?>  
+                    </b>&nbsp; <a id="logoutBtn" class="mb-5" style="cursor: pointer; text-transform: lowercase;"><?php echo isset($translations['logout']) ? htmlspecialchars($translations['logout'], ENT_QUOTES, 'UTF-8') : 'Log out'; ?></a>
+                    </p>
+                    <?php }  ?>
+
+                   <?php if(isset($selectedTime) && $selectedTime != "") {  ?>
+
                     <form action="" method="POST" id="registrationForm" onsubmit="return checkPasswordsMatch()">
+                   <?php if(isset($_SESSION['member_user_name'])) {?>
+                    <input type="hidden" id="member_user_id" name="member_user_id" value="<?php echo htmlspecialchars($_SESSION['member_user_id']); ?>">
+                    <?php } ?>
                     <div class="mb-3 row">
                         <div class="col-sm-12">
                             <h2 style="font-weight: 300;"><b><?php echo htmlspecialchars(isset($translations['location']) ? $translations['location'] : 'Location', ENT_QUOTES, 'UTF-8'); ?> </b><?php echo htmlspecialchars($event_laboratory_title, ENT_QUOTES, 'UTF-8'); ?></h2>
-                            <input type="hidden" class="form-control disable" id="reserve_event_laboratory_id" name="reserve_event_laboratory_id" value="<?php echo htmlspecialchars($event_laboratory_id, ENT_QUOTES, 'UTF-8'); ?>" readonly style="background-color: #f3f3f3;">
-
+                            <input type="hidden" id="reserve_event_laboratory_id" name="reserve_event_laboratory_id" value="<?php echo htmlspecialchars($event_laboratory_id, ENT_QUOTES, 'UTF-8'); ?>">
+              
                             <h4 style="font-weight: 300;"><b><?php echo htmlspecialchars(isset($translations['practice']) ? $translations['practice'] : 'Practice', ENT_QUOTES, 'UTF-8'); ?>: </b><?php echo htmlspecialchars($event_item_title, ENT_QUOTES, 'UTF-8'); ?></h4>
-                            <input type="hidden" class="form-control disable" id="event_item_id" name="event_item_id" value="<?php echo htmlspecialchars($event_item_id, ENT_QUOTES, 'UTF-8'); ?>" readonly style="background-color: #f3f3f3;">
+                            <input type="hidden" id="event_item_id" name="event_item_id" value="<?php echo htmlspecialchars($event_item_id, ENT_QUOTES, 'UTF-8'); ?>">
 
                             <h4 style="font-weight: 300;"><b><?php echo htmlspecialchars(isset($translations['audience']) ? $translations['audience'] : 'Audience', ENT_QUOTES, 'UTF-8'); ?>: </b><?php echo htmlspecialchars($event_target_audience, ENT_QUOTES, 'UTF-8'); ?></h4>
-                            <input type="hidden" class="form-control disable" id="event_target_audience" name="event_target_audience" value="<?php echo htmlspecialchars($event_target_audience, ENT_QUOTES, 'UTF-8'); ?>" readonly style="background-color: #f3f3f3;">
+                            <input type="hidden" id="event_target_audience" name="event_target_audience" value="<?php echo htmlspecialchars($event_target_audience, ENT_QUOTES, 'UTF-8'); ?>">
                         </div>
                         </div>
                         <div class="row">
@@ -136,7 +175,7 @@
 
                     </form>
 
-                    <?php } else if(empty($selectedTime)){
+                    <?php   } else if(empty($selectedTime)){
                            /*  
                             echo "<p>" . (isset($translations['not_selected_event_time']) ? $translations['not_selected_event_time'] : 'You have not selected an event time. Registration is currently suspended. Please try again later.') . "</p>
                             <div class='container mt-5 mb-3 no-register'></div>"; }  else  {
@@ -144,7 +183,8 @@
                         
                             echo "<p>" . (isset($translations['event_up']) ? $translations['event_up'] : '') . "</p>
                             <div class='container mt-5 mb-3 register'></div>";
-                        }?>
+                        } 
+                    ?>
                         <p><?php echo isset($translations['go_to']) ? $translations['go_to'] : 'Go to'; ?>&nbsp;<a href="/" class="btn-link"><?php echo strtolower(isset($translations['home_page']) ? $translations['home_page'] : 'Home page'); ?></a>&nbsp;<?php echo isset($translations['or']) ? $translations['or'] : 'or';?>&nbsp;
                         <?php echo isset($translations['back_to']) ? $translations['back_to'] : 'back to'; ?>&nbsp;<a href="/event-calendar" class="btn-link"><?php echo strtolower(isset($translations['event_calendar']) ? $translations['event_calendar'] : 'Event calendar'); ?></a>&nbsp;<p>
 
@@ -152,3 +192,7 @@
                 </div>
             </div>
     </section>
+        
+<script>
+    var translations = <?php echo json_encode($translations); ?>;
+</script>
