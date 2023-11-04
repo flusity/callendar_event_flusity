@@ -211,8 +211,6 @@ $(document).on('change', '.time-checkbox', function() {
 });
 
 
-
-
 function checkPasswordsMatch() {
     var password = document.getElementById("member_password").value;
     var confirmPassword = document.getElementById("re_member_password").value;
@@ -236,7 +234,7 @@ function checkUserExists() {
                 check_exist: true
             },
             success: function(response) {
-                if (response.trim() === 'exists') { // Turi atitikti grąžintą atsakymą iš serverio
+                if (response.trim() === 'exists') { 
                     reject(new Error("Username or email already registered."));
                 } else {
                     resolve();
@@ -249,25 +247,12 @@ function checkUserExists() {
     });
 }
 
-$(document).ready(function() {
-    $("#registrationForm").on("submit", function(event) {
-        event.preventDefault();
-        if (!checkPasswordsMatch()) {
-            return;
-        }
-        checkUserExists().then(function() {
-            submitForm();
-        }).catch(function(error) {
-            alert(error.message);
-        });
-    });
-});
 
 function submitForm() {
     $.ajax({
         url: "../../cover/addons/event_callendar/action/re_member.php",
         type: "POST",
-        data: $("#registrationForm").serialize() + '&register=true', // Pridėti papildomą parametrą kad serveris žinotų jog siunčiami registracijos duomenys
+        data: $("#registrationForm").serialize() + '&register=true', 
         success: function(response) {
             var trimmedResponse = response.trim();
             if (trimmedResponse === 'success') {
@@ -286,7 +271,6 @@ function submitForm() {
 }
 
 
-
 function attachEventListeners() {
     $('.event-view').off('click').click(function(e) {
         e.stopImmediatePropagation();
@@ -300,6 +284,64 @@ function attachEventListeners() {
         showEventModal(eventData, matchingTopic);
     });
 }
+$(document).ready(function() {
+    $("#registrationForm").on("submit", function(event) {
+        event.preventDefault();
+        if (!checkPasswordsMatch()) {
+            return;
+        }
+        checkUserExists().then(function() {
+            submitForm();
+        }).catch(function(error) {
+            alert(error.message);
+        });
+    });
+
+
+
+ $('#loginMemberForm').on('submit', function(e) {
+    e.preventDefault();
+
+    var loginName = $('input[name="member_login_name"]').val();
+    var password = $('input[name="member_password"]').val();
+
+    $.ajax({
+        url: '../../cover/addons/event_callendar/action/re_member_login.php',
+        type: 'POST',
+        data: {
+            member_login_name: loginName,
+            member_password: password
+        },
+        success: function(response) {
+            if (response === 'success') {
+                window.location.href = '/event-calendar';
+                location.reload();
+            } else {
+                alert(`${translations.invalid_login_data}`);
+            }
+        }
+    });
+});
+
+$('#logoutBtn').on('click', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: '../../cover/addons/event_callendar/action/logout.php',
+        type: 'POST',
+        success: function(response) {
+            
+            if (response === 'logged_out') {
+                window.location.href = '/event-calendar';
+            } else {
+                alert('There was an error logging out. Please try again.');
+            }
+        }
+    });
+});
+
+});
+
 $(document).ready(function() {
     attachEventListeners();
     $('.calendar').click(function(e) {
