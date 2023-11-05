@@ -12,7 +12,6 @@ require_once ROOT_PATH . 'core/functions/functions.php';
 $db = getDBConnection($config);
 secureSession($db, $prefix);
 
-// Tikriname, ar gauti POST duomenys
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $loginName = $_POST['member_login_name'];
     $password = $_POST['member_password'];
