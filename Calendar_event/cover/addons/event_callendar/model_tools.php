@@ -141,7 +141,14 @@ if ($mode === 'create' || $addon) { ?>
                         <input type="text" class="form-control" name="prepare_time" id="calendarFormControlPrepareInput" placeholder="Prepare time" value="<?php echo $mode === 'edit' ? htmlspecialchars($addon['prepare_time']) : ''; ?>" required>
                     </div>
                     <div class="col-md-2 mb-3">
-                        <label for="calendarFormControlRegisEndDateInput" class="form-label"><?php echo t('Regist. end date');?></label>
+                       
+                        <a type="button" class=""
+                                data-bs-toggle="end-day-tooltip" data-bs-placement="top"
+                                data-bs-custom-class="custom-tooltip"
+                                data-bs-title="<?php echo t("The number of days when the registration is no longer available is determined, counting from the current day")?>."> 
+                               <?php echo t('Regist. end date');?>
+                         </a>
+                 
                         <input type="text" class="form-control" name="registration_end_date" id="calendarFormControlRegisEndDateInput" placeholder="registr. end date" value="<?php echo $mode === 'edit' ? htmlspecialchars($addon['registration_end_date']) : ''; ?>" required>
                     </div>
 
@@ -426,6 +433,8 @@ $(document).ready(function() {
     $('a[href="' + activeTab + '"]').tab('show');
   }
 });
-
-
+ 
+    $(function () {
+        $('[data-bs-toggle="end-day-tooltip"]').tooltip();
+    });
 </script>
