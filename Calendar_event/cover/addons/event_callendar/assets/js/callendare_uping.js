@@ -145,6 +145,21 @@ function closeEventModal() {
     }
 }
 
+
+function attachEventListeners() {
+    $('.event-view').off('click').click(function(e) {
+        e.stopImmediatePropagation();
+        const eventData = {
+            id: $(this).data('theme-id'),
+            title: $(this).data('title'),
+            date: $(this).data('date'),
+            color: $(this).data('color')
+        };
+        const matchingTopic = eventTopics.find(topic => topic.theme_id === eventData.id);
+        showEventModal(eventData, matchingTopic);
+    });
+}
+
 function showEventModal(eventData,topic) {
     const currentDate = new Date();
     const eventDate = new Date(eventData.date);
@@ -210,42 +225,59 @@ $(document).on('change', '.time-checkbox', function() {
     }
 });
 
+$(document).ready(function() {
+    attachEventListeners();
+    $('.calendar').click(function(e) {
+        e.stopImmediatePropagation();
+        $('#eventModal').hide();
+        closeEventModal();
+    });
+});
+
+
 
 function checkPasswordsMatch() {
-    var password = document.getElementById("member_password").value;
-    var confirmPassword = document.getElementById("re_member_password").value;
-    if (password !== confirmPassword) {
-        alert("Passwords do not match.");
-        return false; 
+    if (!isMemberLoggedIn) {
+        var password = document.getElementById("member_password").value;
+        var confirmPassword = document.getElementById("re_member_password").value;
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
     }
-    return true; 
+    return true;
 }
 
 function checkUserExists() {
     return new Promise((resolve, reject) => {
-        var username = $("#member_login_name").val();
-        var email = $("#member_email").val();
-        $.ajax({
-            url: "../../cover/addons/event_callendar/action/re_member.php",
-            type: "POST",
-            data: {
-                member_login_name: username,
-                member_email: email,
-                check_exist: true
-            },
-            success: function(response) {
-                if (response.trim() === 'exists') { 
-                    reject(new Error("Username or email already registered."));
-                } else {
-                    resolve();
+        if (!isMemberLoggedIn) {
+            var username = $("#member_login_name").val();
+            var email = $("#member_email").val();
+            $.ajax({
+                url: "../../cover/addons/event_callendar/action/re_member.php",
+                type: "POST",
+                data: {
+                    member_login_name: username,
+                    member_email: email,
+                    check_exist: true
+                },
+                success: function(response) {
+                    if (response.trim() === 'exists') {
+                        reject(new Error("Username or email already registered."));
+                    } else {
+                        resolve();
+                    }
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    reject(new Error("An error occurred while checking user existence."));
                 }
-            },
-            error: function(xhr, textStatus, errorThrown) {
-                reject(new Error("An error occurred while checking user existence."));
-            }
-        });
+            });
+        } else {
+            resolve();
+        }
     });
 }
+
 
 
 function submitForm() {
@@ -257,10 +289,12 @@ function submitForm() {
             var trimmedResponse = response.trim();
             if (trimmedResponse === 'success') {
                 window.location.href = "registration-member.php?message=success";
+                
             } else if (trimmedResponse === 'exists') {
                 alert('Username or email already registered.');
             } else {
                 window.location.href = "registration-member.php?message=success";
+              //  alert('nocheck email and user name, back to page .'); 
             }
         },
         
@@ -271,26 +305,13 @@ function submitForm() {
 }
 
 
-function attachEventListeners() {
-    $('.event-view').off('click').click(function(e) {
-        e.stopImmediatePropagation();
-        const eventData = {
-            id: $(this).data('theme-id'),
-            title: $(this).data('title'),
-            date: $(this).data('date'),
-            color: $(this).data('color')
-        };
-        const matchingTopic = eventTopics.find(topic => topic.theme_id === eventData.id);
-        showEventModal(eventData, matchingTopic);
-    });
-}
 $(document).ready(function() {
     $("#registrationForm").on("submit", function(event) {
         event.preventDefault();
-        if (!checkPasswordsMatch()) {
+        if (!checkPasswordsMatch(isMemberLoggedIn)) {
             return;
         }
-        checkUserExists().then(function() {
+        checkUserExists(isMemberLoggedIn).then(function() {
             submitForm();
         }).catch(function(error) {
             alert(error.message);
@@ -342,11 +363,3 @@ $('#logoutBtn').on('click', function(e) {
 
 });
 
-$(document).ready(function() {
-    attachEventListeners();
-    $('.calendar').click(function(e) {
-        e.stopImmediatePropagation();
-        $('#eventModal').hide();
-        closeEventModal();
-    });
-});
