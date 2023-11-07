@@ -99,7 +99,7 @@ foreach ($databaseDropScripts as $databaseDropScript) {
     $stmt = $db->prepare($databaseDropScript);
     $stmt->execute();
     if ($stmt->execute() === false) {
-        error_log("Klaida vykdant SQL užklausą: " . $stmt->errorInfo()[2]);
+        error_log("Error executing SQL query: " . $stmt->errorInfo()[2]);
     }
 }
 
@@ -110,6 +110,6 @@ foreach ($databaseScripts as $databaseScript) {
     $stmt = $db->prepare($databaseScript);
     $stmt->execute();
     if ($stmt->execute() === false) {
-        error_log("Klaida vykdant SQL užklausą: " . $stmt->errorInfo()[2]);
+        error_log("Error executing SQL query: " . $stmt->errorInfo()[2]);
     }
 }
