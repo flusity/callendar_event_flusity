@@ -20,15 +20,18 @@
 
     require_once "join.php";
     require_once getThemePath($db, $prefix, '/template/header.php'); 
- 
+     if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
+        echo '<link rel="stylesheet" href="/core/tools/css/edit.css">';
+    }
     $language_code = getLanguageSetting($db, $prefix);
     $translations = getTranslations($db, $prefix, $language_code);
-
-
+    require_once getThemePath($db, $prefix, '/template/registration_member.php');
+ 
+    require_once getThemePath($db, $prefix, '/template/footer.php');
+    if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
+        echo '<script src="/core/template/js/editable.js"></script>
+        <script src="/core/template/js/edit.js"></script>';
+    }
 ?>
-
-<?php  require_once getThemePath($db, $prefix, '/template/registration_member.php'); ?>
-
-<?php  require_once getThemePath($db, $prefix, '/template/footer.php'); ?>
-
-
+</body>
+</html>
