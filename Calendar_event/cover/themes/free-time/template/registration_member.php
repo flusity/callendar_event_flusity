@@ -89,9 +89,11 @@
 
 
                    <?php else: 
-                     echo " <p> Sveiki <b>". $_SESSION['member_user_name'];
+                    echo "<p> ";
+                    echo isset($translations['hello']) ? htmlspecialchars($translations['hello'], ENT_QUOTES, 'UTF-8') : 'Hello';
+                    echo"&nbsp;<b>". $_SESSION['member_user_name']."</b>";
                    ?>  
-                    </b>&nbsp; <a id="logoutBtn" class="mb-5" style="cursor: pointer; text-transform: lowercase;"><?php echo isset($translations['logout']) ? htmlspecialchars($translations['logout'], ENT_QUOTES, 'UTF-8') : 'Log out'; ?></a>
+                    &nbsp;<a id="logoutBtn" class="mb-5" style="cursor: pointer; text-transform: lowercase;"><?php echo isset($translations['logout']) ? htmlspecialchars($translations['logout'], ENT_QUOTES, 'UTF-8') : 'Log out'; ?></a>
                     </p>
                     <?php endif; ?>
 
