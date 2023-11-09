@@ -63,7 +63,8 @@ $translations_it = array(
     'are_you_registered_then_you_can_just_log_in'=> 'Sei registrato? poi puoi semplicemente accedere',
     'invalid_login_data' => 'Dati di accesso non validi',
     'back_to_calendar_page_to_log_in' => 'vai alla pagina del calendario ed effettua il collegare',
-    'logged_in_as' => 'Collegato come'
+    'logged_in_as' => 'Collegato come',
+    'hello'=>'Ciao'
 );
 
 $translations_lt = array(
@@ -121,7 +122,8 @@ $translations_lt = array(
     'are_you_registered_then_you_can_just_log_in' =>'Esate registruotas? tuomet galite tiesiog prisijungti',
     'invalid_login_data' => 'Neteisingi prisijungimo duomenys',
     'back_to_calendar_page_to_log_in' => 'grįžti į kalendoriaus puslapį ir prisijungti',
-    'logged_in_as' => 'Prisijungėte kaip'
+    'logged_in_as' => 'Prisijungėte kaip',
+    'hello'=>'Sveiki'
 );
 
 $translations_en = array(
@@ -179,7 +181,8 @@ $translations_en = array(
     'are_you_registered_then_you_can_just_log_in' =>'Are you registered? then you can just log in',
     'invalid_login_data' => 'Invalid login data',
     'back_to_calendar_page_to_log_in' => 'back to calendar page to Log in',
-    'logged_in_as' => 'Logged in as'
+    'logged_in_as' => 'Logged in as',
+    'hello'=>'Hello'
 );
 
 
