@@ -16,7 +16,10 @@ Event calendar for flusity cms
 - **Flusity CMS Version**: 2 or newer
 - **PHP Version**: 7.2 or newer
 - **MySQL Version**: 5.2.1 or newer
-- 
+
+## Security
+-** Security testing is recommended as the plugin is not yet complete
+
 ////////////////////////////////////////////
 # Apie papildinį
 
@@ -34,5 +37,8 @@ Event calendar for flusity cms
 - **Flusity CMS versija**: 2 arba naujesnė
 - **PHP versija**: 7.2 ir naujesnė
 - **MySQL versija**: 5.2.1 arba naujesnė
+
+## Saugumas
+-** Rekomenduojama atlikti testavimus dėl saugumo, nes papildinys nėra dar baigtinis
 
 <img src="https://flusity.com/uploads/event_calendar_fb6b21bcc2bee459.png" width=40%/>
